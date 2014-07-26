@@ -15,8 +15,14 @@
 # Inherit device configuration
 $(call inherit-product, device/semc/iyokan/full_iyokan.mk)
 
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_mini_phone.mk)
+# Inherit APNs list
+$(call inherit-product, vendor/nameless/config/apns.mk)
+
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+# Inherit from our custom product configuration
+$(call inherit-product, vendor/nameless/config/common.mk)
 
 # Set build fingerprint / ID / Product Name ect.
 PRODUCT_BUILD_PROP_OVERRIDES += \
@@ -26,11 +32,12 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="MK16i-user 4.0.4 4.1.B.0.587 tL1_3w test-keys"
 
 # Device identifier. This must come after all inclusions
-PRODUCT_NAME := cm_iyokan
-PRODUCT_GMS_CLIENTID_BASE := android-sonyericsson
-
-# Release name
 PRODUCT_RELEASE_NAME := iyokan
+PRODUCT_NAME := nameless_iyokan
+PRODUCT_GMS_CLIENTID_BASE := android-sonyericsson
+PRODUCT_DEVICE := iyokan
+PRODUCT_BRAND := semc
+PRODUCT_MODEL := Xperia Pro
+PRODUCT_MANUFACTURER := SEMC
 
-# Custom tag for unofficial builds
-TARGET_UNOFFICIAL_BUILD_ID := LegacyXperia
+
